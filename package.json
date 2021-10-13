@@ -28,7 +28,7 @@
     "webapp:dev-ssl": "ng serve --ssl",
     "webapp:prod": "npm run clean-www && npm run webapp:build:prod",
     "webapp:test": "npm run test --",
-    "prepare": "husky install",
+    "prepare": "",
     "docker:db:up": "docker-compose -f src/main/docker/mysql.yml up -d",
     "docker:db:down": "docker-compose -f src/main/docker/mysql.yml down -v --remove-orphans",
     "docker:app:up": "docker-compose -f src/main/docker/app.yml up -d aircev-app",

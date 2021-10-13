@@ -166,6 +166,16 @@ public class AvionResource {
     }
 
     /**
+     * {@code GET  /avion-viejo} : Obtiene el avion mas viejo
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the avionDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/avions/mas-viejo")
+    public ResponseEntity<AvionDTO> getMasViejo() {
+        return ResponseUtil.wrapOrNotFound(avionService.elMasViejo());
+    }
+
+    /**
      * {@code DELETE  /avions/:id} : delete the "id" avion.
      *
      * @param id the id of the avionDTO to delete.

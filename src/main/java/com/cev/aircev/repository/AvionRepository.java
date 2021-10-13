@@ -1,5 +1,7 @@
 package com.cev.aircev.repository;
 
+import java.util.Optional;
+
 import com.cev.aircev.domain.Avion;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
@@ -9,4 +11,9 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface AvionRepository extends JpaRepository<Avion, Long> {}
+public interface AvionRepository extends JpaRepository<Avion, Long> {
+
+    Optional<Avion> findFirstByOrderByEdadDesc();
+
+
+}
