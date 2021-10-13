@@ -1,0 +1,11 @@
+id;nombre;apellidos;dni;direccion;email;es_piloto;horas_de_vuelo
+1;"ALBA";"ARENAS";"26275776R";"Calle Aviador, 1";"ALBA@GMAIL.COM";true;1293
+2;"FELIX";"ASEJO";"70383492L";"Calle Aviador, 2";"FELIX@GMAIL.COM";true;1999
+3;"NATALIA";"TORREJÓN";"36222872B";"Calle Aviador, 3";"NATALIA@GMAIL.COM";true;102
+4;"MARIA PILAR";"FERNÁNDEZ";"59884712A";"Calle Aviador, 4";"MARIA PILAR@GMAIL.COM";true;1928
+5;"PAULA ";"ARGAÑARAZ";"45375707L";"Calle Aviador, 5";"PAULA @GMAIL.COM";true;1873
+6;"FRANCISCA";"GOMEZ";"23699379H";"Calle Aviador, 6";"FRANCISCA@GMAIL.COM";true;1243
+7;"YOLANDA";"MOLINA";"28976173Z";"Calle Aviador, 7";"YOLANDA@GMAIL.COM";true;1992
+8;"RUBÉN";"MORENO";"23317630T";"Calle Aviador, 8";"RUBÉN@GMAIL.COM";true;1928
+9;"ÁNGEL";"MARTÍNEZ";"92609083C";"Calle Aviador, 9";"ÁNGEL@GMAIL.COM";true;1992
+10;"FERNANDO";"ZAZO";"05171611S";"Calle Aviador, 10";"FERNANDO@GMAIL.COM";true;1000

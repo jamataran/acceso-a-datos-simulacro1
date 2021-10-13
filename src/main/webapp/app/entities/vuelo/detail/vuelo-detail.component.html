@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="vuelo">
+      <h2 data-cy="vueloDetailsHeading"><span>Vuelo</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ vuelo.id }}</span>
+        </dd>
+        <dt><span>Avion</span></dt>
+        <dd>
+          <div *ngIf="vuelo.avion">
+            <a [routerLink]="['/avion', vuelo.avion?.id, 'view']">{{ vuelo.avion?.matricula }}</a>
+          </div>
+        </dd>
+        <dt><span>Origen</span></dt>
+        <dd>
+          <div *ngIf="vuelo.origen">
+            <a [routerLink]="['/aeropuerto', vuelo.origen?.id, 'view']">{{ vuelo.origen?.nombre }}</a>
+          </div>
+        </dd>
+        <dt><span>Destino</span></dt>
+        <dd>
+          <div *ngIf="vuelo.destino">
+            <a [routerLink]="['/aeropuerto', vuelo.destino?.id, 'view']">{{ vuelo.destino?.nombre }}</a>
+          </div>
+        </dd>
+        <dt><span>Piloto</span></dt>
+        <dd>
+          <div *ngIf="vuelo.piloto">
+            <a [routerLink]="['/piloto', vuelo.piloto?.id, 'view']">{{ vuelo.piloto?.dni }}</a>
+          </div>
+        </dd>
+        <dt><span>Tripulacion</span></dt>
+        <dd>
+          <span *ngFor="let tripulacion of vuelo.tripulacions; let last = last">
+            <a [routerLink]="['/tripulante', tripulacion?.id, 'view']">{{ tripulacion.dni }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/vuelo', vuelo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

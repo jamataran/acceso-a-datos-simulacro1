@@ -1,0 +1,44 @@
+{
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipName": "avion",
+      "otherEntityName": "avion",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "matricula"
+    },
+    {
+      "relationshipName": "origen",
+      "otherEntityName": "aeropuerto",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "nombre"
+    },
+    {
+      "relationshipName": "destino",
+      "otherEntityName": "aeropuerto",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "nombre"
+    },
+    {
+      "relationshipName": "piloto",
+      "otherEntityName": "piloto",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "dni"
+    },
+    {
+      "relationshipName": "tripulacion",
+      "otherEntityName": "tripulante",
+      "relationshipType": "many-to-many",
+      "otherEntityField": "dni",
+      "ownerSide": true,
+      "otherEntityRelationshipName": "vuelos"
+    }
+  ],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "pagination",
+  "name": "Vuelo",
+  "changelogDate": "20211013104238"
+}

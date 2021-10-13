@@ -1,0 +1,39 @@
+{
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "10",
+      "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "ciudad",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "10",
+      "fieldValidateRulesMaxlength": "255"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipName": "salidas",
+      "otherEntityName": "vuelo",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "origen"
+    },
+    {
+      "relationshipName": "destinos",
+      "otherEntityName": "vuelo",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "destino"
+    }
+  ],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "pagination",
+  "name": "Aeropuerto",
+  "changelogDate": "20211013092632"
+}
