@@ -30,8 +30,6 @@ public class AvionService {
         this.avionMapper = avionMapper;
     }
 
-
-
     /**
      * Save a avion.
      *
@@ -87,17 +85,6 @@ public class AvionService {
     public Optional<AvionDTO> findOne(Long id) {
         log.debug("Request to get Avion : {}", id);
         return avionRepository.findById(id).map(avionMapper::toDto);
-    }
-
-    /**
-     * Get one avion by id.
-     *
-     * @return the entity.
-     */
-    @Transactional(readOnly = true)
-    public Optional<AvionDTO> elMasViejo() {
-        log.debug("Request to get oldest Avion");
-        return avionRepository.findFirstByOrderByEdadDesc().map(avionMapper::toDto);
     }
 
     /**

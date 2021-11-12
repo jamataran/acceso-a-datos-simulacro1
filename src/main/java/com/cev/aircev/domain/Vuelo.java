@@ -8,6 +8,8 @@ import javax.persistence.*;
 
 /**
  * A Vuelo.
+ *
+ * Eso lo he comentado yo
  */
 @Entity
 @Table(name = "vuelo")
@@ -19,6 +21,12 @@ public class Vuelo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "pasaporte_covid")
+    private Boolean pasaporteCovid;
+
+    @Column(name = "prueba")
+    private String prueba;
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "vuelos" }, allowSetters = true)
@@ -57,6 +65,32 @@ public class Vuelo implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getPasaporteCovid() {
+        return this.pasaporteCovid;
+    }
+
+    public Vuelo pasaporteCovid(Boolean pasaporteCovid) {
+        this.setPasaporteCovid(pasaporteCovid);
+        return this;
+    }
+
+    public void setPasaporteCovid(Boolean pasaporteCovid) {
+        this.pasaporteCovid = pasaporteCovid;
+    }
+
+    public String getPrueba() {
+        return this.prueba;
+    }
+
+    public Vuelo prueba(String prueba) {
+        this.setPrueba(prueba);
+        return this;
+    }
+
+    public void setPrueba(String prueba) {
+        this.prueba = prueba;
     }
 
     public Avion getAvion() {
@@ -160,6 +194,8 @@ public class Vuelo implements Serializable {
     public String toString() {
         return "Vuelo{" +
             "id=" + getId() +
+            ", pasaporteCovid='" + getPasaporteCovid() + "'" +
+            ", prueba='" + getPrueba() + "'" +
             "}";
     }
 }

@@ -1,5 +1,14 @@
 {
-  "fields": [],
+  "fields": [
+    {
+      "fieldName": "pasaporteCovid",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "prueba",
+      "fieldType": "String"
+    }
+  ],
   "relationships": [
     {
       "relationshipName": "avion",

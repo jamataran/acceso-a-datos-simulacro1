@@ -12,6 +12,10 @@ public class VueloDTO implements Serializable {
 
     private Long id;
 
+    private Boolean pasaporteCovid;
+
+    private String prueba;
+
     private AvionDTO avion;
 
     private AeropuertoDTO origen;
@@ -28,6 +32,22 @@ public class VueloDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getPasaporteCovid() {
+        return pasaporteCovid;
+    }
+
+    public void setPasaporteCovid(Boolean pasaporteCovid) {
+        this.pasaporteCovid = pasaporteCovid;
+    }
+
+    public String getPrueba() {
+        return prueba;
+    }
+
+    public void setPrueba(String prueba) {
+        this.prueba = prueba;
     }
 
     public AvionDTO getAvion() {
@@ -96,6 +116,8 @@ public class VueloDTO implements Serializable {
     public String toString() {
         return "VueloDTO{" +
             "id=" + getId() +
+            ", pasaporteCovid='" + getPasaporteCovid() + "'" +
+            ", prueba='" + getPrueba() + "'" +
             ", avion=" + getAvion() +
             ", origen=" + getOrigen() +
             ", destino=" + getDestino() +

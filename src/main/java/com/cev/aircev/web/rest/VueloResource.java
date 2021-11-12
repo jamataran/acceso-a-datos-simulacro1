@@ -1,35 +1,24 @@
 package com.cev.aircev.web.rest;
 
+import com.cev.aircev.repository.VueloRepository;
+import com.cev.aircev.service.VueloService;
+import com.cev.aircev.service.dto.VueloDTO;
+import com.cev.aircev.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import com.cev.aircev.repository.VueloRepository;
-import com.cev.aircev.service.VueloService;
-import com.cev.aircev.service.dto.VueloDTO;
-import com.cev.aircev.web.rest.errors.BadRequestAlertException;
-
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -80,7 +69,7 @@ public class VueloResource {
     /**
      * {@code PUT  /vuelos/:id} : Updates an existing vuelo.
      *
-     * @param id       the id of the vueloDTO to save.
+     * @param id the id of the vueloDTO to save.
      * @param vueloDTO the vueloDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated vueloDTO,
      * or with status {@code 400 (Bad Request)} if the vueloDTO is not valid,
@@ -114,7 +103,7 @@ public class VueloResource {
     /**
      * {@code PATCH  /vuelos/:id} : Partial updates given fields of an existing vuelo, field will ignore if it is null
      *
-     * @param id       the id of the vueloDTO to save.
+     * @param id the id of the vueloDTO to save.
      * @param vueloDTO the vueloDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated vueloDTO,
      * or with status {@code 400 (Bad Request)} if the vueloDTO is not valid,
@@ -122,7 +111,7 @@ public class VueloResource {
      * or with status {@code 500 (Internal Server Error)} if the vueloDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PatchMapping(value = "/vuelos/{id}", consumes = {"application/json", "application/merge-patch+json"})
+    @PatchMapping(value = "/vuelos/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<VueloDTO> partialUpdateVuelo(
         @PathVariable(value = "id", required = false) final Long id,
         @RequestBody VueloDTO vueloDTO
@@ -150,7 +139,7 @@ public class VueloResource {
     /**
      * {@code GET  /vuelos} : get all the vuelos.
      *
-     * @param pageable  the pagination information.
+     * @param pageable the pagination information.
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of vuelos in body.
      */
@@ -168,19 +157,6 @@ public class VueloResource {
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    @GetMapping("/vuelos/piloto/{dni}")
-    public ResponseEntity<List<VueloDTO>> getAllVuelos(@PathVariable("dni") String dni, Pageable pageable) {
-        log.debug("REST request to get a page of Vuelos");
-        Page<VueloDTO> page = vueloService.buscarPorPiloto(dni, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    @GetMapping("/vuelos/cuenta/tripulante/{dni}")
-    public ResponseEntity<Long> cuentaVuelosTripulanteDni(@PathVariable("dni") String dni){
-        return ResponseEntity.ok(vueloService.cuentaVuelosTripulante(dni));
     }
 
     /**

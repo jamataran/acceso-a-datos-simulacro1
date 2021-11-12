@@ -22,6 +22,8 @@ describe('Service Tests', () => {
 
       elemDefault = {
         id: 0,
+        pasaporteCovid: false,
+        prueba: 'AAAAAAA',
       };
     });
 
@@ -57,6 +59,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 1,
+            pasaporteCovid: true,
+            prueba: 'BBBBBB',
           },
           elemDefault
         );
@@ -88,6 +92,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 1,
+            pasaporteCovid: true,
+            prueba: 'BBBBBB',
           },
           elemDefault
         );
@@ -139,7 +145,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Vuelo to an array', () => {
-          const vueloArray: IVuelo[] = [{ id: 123 }, { id: 456 }, { id: 16274 }];
+          const vueloArray: IVuelo[] = [{ id: 123 }, { id: 456 }, { id: 49812 }];
           const vueloCollection: IVuelo[] = [{ id: 123 }];
           expectedResult = service.addVueloToCollectionIfMissing(vueloCollection, ...vueloArray);
           expect(expectedResult).toHaveLength(3);

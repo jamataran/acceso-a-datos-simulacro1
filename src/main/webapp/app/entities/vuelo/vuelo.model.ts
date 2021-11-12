@@ -5,6 +5,8 @@ import { ITripulante } from 'app/entities/tripulante/tripulante.model';
 
 export interface IVuelo {
   id?: number;
+  pasaporteCovid?: boolean | null;
+  prueba?: string | null;
   avion?: IAvion | null;
   origen?: IAeropuerto | null;
   destino?: IAeropuerto | null;
@@ -15,12 +17,16 @@ export interface IVuelo {
 export class Vuelo implements IVuelo {
   constructor(
     public id?: number,
+    public pasaporteCovid?: boolean | null,
+    public prueba?: string | null,
     public avion?: IAvion | null,
     public origen?: IAeropuerto | null,
     public destino?: IAeropuerto | null,
     public piloto?: IPiloto | null,
     public tripulacions?: ITripulante[] | null
-  ) {}
+  ) {
+    this.pasaporteCovid = this.pasaporteCovid ?? false;
+  }
 }
 
 export function getVueloIdentifier(vuelo: IVuelo): number | undefined {

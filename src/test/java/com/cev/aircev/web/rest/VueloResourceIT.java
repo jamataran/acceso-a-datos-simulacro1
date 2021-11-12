@@ -40,6 +40,12 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class VueloResourceIT {
 
+    private static final Boolean DEFAULT_PASAPORTE_COVID = false;
+    private static final Boolean UPDATED_PASAPORTE_COVID = true;
+
+    private static final String DEFAULT_PRUEBA = "AAAAAAAAAA";
+    private static final String UPDATED_PRUEBA = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/vuelos";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -73,7 +79,7 @@ class VueloResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Vuelo createEntity(EntityManager em) {
-        Vuelo vuelo = new Vuelo();
+        Vuelo vuelo = new Vuelo().pasaporteCovid(DEFAULT_PASAPORTE_COVID).prueba(DEFAULT_PRUEBA);
         return vuelo;
     }
 
@@ -84,7 +90,7 @@ class VueloResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Vuelo createUpdatedEntity(EntityManager em) {
-        Vuelo vuelo = new Vuelo();
+        Vuelo vuelo = new Vuelo().pasaporteCovid(UPDATED_PASAPORTE_COVID).prueba(UPDATED_PRUEBA);
         return vuelo;
     }
 
@@ -107,6 +113,8 @@ class VueloResourceIT {
         List<Vuelo> vueloList = vueloRepository.findAll();
         assertThat(vueloList).hasSize(databaseSizeBeforeCreate + 1);
         Vuelo testVuelo = vueloList.get(vueloList.size() - 1);
+        assertThat(testVuelo.getPasaporteCovid()).isEqualTo(DEFAULT_PASAPORTE_COVID);
+        assertThat(testVuelo.getPrueba()).isEqualTo(DEFAULT_PRUEBA);
     }
 
     @Test
@@ -139,7 +147,9 @@ class VueloResourceIT {
             .perform(get(ENTITY_API_URL + "?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(vuelo.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(vuelo.getId().intValue())))
+            .andExpect(jsonPath("$.[*].pasaporteCovid").value(hasItem(DEFAULT_PASAPORTE_COVID.booleanValue())))
+            .andExpect(jsonPath("$.[*].prueba").value(hasItem(DEFAULT_PRUEBA)));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -171,7 +181,9 @@ class VueloResourceIT {
             .perform(get(ENTITY_API_URL_ID, vuelo.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(vuelo.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(vuelo.getId().intValue()))
+            .andExpect(jsonPath("$.pasaporteCovid").value(DEFAULT_PASAPORTE_COVID.booleanValue()))
+            .andExpect(jsonPath("$.prueba").value(DEFAULT_PRUEBA));
     }
 
     @Test
@@ -193,6 +205,7 @@ class VueloResourceIT {
         Vuelo updatedVuelo = vueloRepository.findById(vuelo.getId()).get();
         // Disconnect from session so that the updates on updatedVuelo are not directly saved in db
         em.detach(updatedVuelo);
+        updatedVuelo.pasaporteCovid(UPDATED_PASAPORTE_COVID).prueba(UPDATED_PRUEBA);
         VueloDTO vueloDTO = vueloMapper.toDto(updatedVuelo);
 
         restVueloMockMvc
@@ -207,6 +220,8 @@ class VueloResourceIT {
         List<Vuelo> vueloList = vueloRepository.findAll();
         assertThat(vueloList).hasSize(databaseSizeBeforeUpdate);
         Vuelo testVuelo = vueloList.get(vueloList.size() - 1);
+        assertThat(testVuelo.getPasaporteCovid()).isEqualTo(UPDATED_PASAPORTE_COVID);
+        assertThat(testVuelo.getPrueba()).isEqualTo(UPDATED_PRUEBA);
     }
 
     @Test
@@ -286,6 +301,8 @@ class VueloResourceIT {
         Vuelo partialUpdatedVuelo = new Vuelo();
         partialUpdatedVuelo.setId(vuelo.getId());
 
+        partialUpdatedVuelo.pasaporteCovid(UPDATED_PASAPORTE_COVID);
+
         restVueloMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedVuelo.getId())
@@ -298,6 +315,8 @@ class VueloResourceIT {
         List<Vuelo> vueloList = vueloRepository.findAll();
         assertThat(vueloList).hasSize(databaseSizeBeforeUpdate);
         Vuelo testVuelo = vueloList.get(vueloList.size() - 1);
+        assertThat(testVuelo.getPasaporteCovid()).isEqualTo(UPDATED_PASAPORTE_COVID);
+        assertThat(testVuelo.getPrueba()).isEqualTo(DEFAULT_PRUEBA);
     }
 
     @Test
@@ -312,6 +331,8 @@ class VueloResourceIT {
         Vuelo partialUpdatedVuelo = new Vuelo();
         partialUpdatedVuelo.setId(vuelo.getId());
 
+        partialUpdatedVuelo.pasaporteCovid(UPDATED_PASAPORTE_COVID).prueba(UPDATED_PRUEBA);
+
         restVueloMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedVuelo.getId())
@@ -324,6 +345,8 @@ class VueloResourceIT {
         List<Vuelo> vueloList = vueloRepository.findAll();
         assertThat(vueloList).hasSize(databaseSizeBeforeUpdate);
         Vuelo testVuelo = vueloList.get(vueloList.size() - 1);
+        assertThat(testVuelo.getPasaporteCovid()).isEqualTo(UPDATED_PASAPORTE_COVID);
+        assertThat(testVuelo.getPrueba()).isEqualTo(UPDATED_PRUEBA);
     }
 
     @Test

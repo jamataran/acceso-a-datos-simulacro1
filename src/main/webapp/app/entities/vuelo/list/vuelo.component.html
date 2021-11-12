@@ -33,6 +33,8 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="pasaporteCovid"><span>Pasaporte Covid</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="prueba"><span>Prueba</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="avion.matricula"><span>Avion</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="origen.nombre"><span>Origen</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="destino.nombre"><span>Destino</span> <fa-icon icon="sort"></fa-icon></th>
@@ -45,6 +47,8 @@
           <td>
             <a [routerLink]="['/vuelo', vuelo.id, 'view']">{{ vuelo.id }}</a>
           </td>
+          <td>{{ vuelo.pasaporteCovid }}</td>
+          <td>{{ vuelo.prueba }}</td>
           <td>
             <div *ngIf="vuelo.avion">
               <a [routerLink]="['/avion', vuelo.avion?.id, 'view']">{{ vuelo.avion?.matricula }}</a>

@@ -30,6 +30,8 @@ export class VueloUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
+    pasaporteCovid: [],
+    prueba: [],
     avion: [],
     origen: [],
     destino: [],
@@ -118,6 +120,8 @@ export class VueloUpdateComponent implements OnInit {
   protected updateForm(vuelo: IVuelo): void {
     this.editForm.patchValue({
       id: vuelo.id,
+      pasaporteCovid: vuelo.pasaporteCovid,
+      prueba: vuelo.prueba,
       avion: vuelo.avion,
       origen: vuelo.origen,
       destino: vuelo.destino,
@@ -180,6 +184,8 @@ export class VueloUpdateComponent implements OnInit {
     return {
       ...new Vuelo(),
       id: this.editForm.get(['id'])!.value,
+      pasaporteCovid: this.editForm.get(['pasaporteCovid'])!.value,
+      prueba: this.editForm.get(['prueba'])!.value,
       avion: this.editForm.get(['avion'])!.value,
       origen: this.editForm.get(['origen'])!.value,
       destino: this.editForm.get(['destino'])!.value,
