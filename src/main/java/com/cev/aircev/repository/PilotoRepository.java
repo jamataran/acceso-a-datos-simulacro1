@@ -1,5 +1,8 @@
 package com.cev.aircev.repository;
 
+import java.awt.print.Pageable;
+import java.util.List;
+
 import com.cev.aircev.domain.Piloto;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
@@ -9,4 +12,8 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface PilotoRepository extends JpaRepository<Piloto, Long> {}
+public interface PilotoRepository extends JpaRepository<Piloto, Long> {
+
+    List<Piloto> findAllByDni(String dni, Pageable pageable);
+
+}

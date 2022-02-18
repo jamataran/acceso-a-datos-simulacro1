@@ -43,6 +43,11 @@ public class AvionService {
         return avionMapper.toDto(avion);
     }
 
+    public AvionDTO elMasViejo(){
+        final Optional<Avion> firstByOrderByEdadDesc = this.avionRepository.findFirstByOrderByEdadDesc();
+        return this.avionMapper.toDto(firstByOrderByEdadDesc.get());
+    }
+
     /**
      * Partially update a avion.
      *

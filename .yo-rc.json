@@ -16,7 +16,7 @@
     "otherModules": [],
     "pages": [],
     "creationTimestamp": 1634110726211,
-    "serviceDiscoveryType": "no",
+    "serviceDiscoveryType": false,
     "reactive": false,
     "authenticationType": "jwt",
     "packageName": "com.cev.aircev",
@@ -44,6 +44,17 @@
     "enableGradleEnterprise": false,
     "languages": ["en", "fr"],
     "lastLiquibaseTimestamp": 1634121758000,
-    "entities": ["Piloto", "Avion", "Aeropuerto", "Tripulante", "Vuelo"]
+    "entities": ["Piloto", "Avion", "Aeropuerto", "Tripulante", "Vuelo"],
+    "appsFolders": ["acceso-a-datos-simulacro1"],
+    "directoryPath": "../",
+    "clusteredDbApps": {},
+    "dockerRepositoryName": "jamataran",
+    "dockerPushCommand": "docker push",
+    "kubernetesNamespace": "default",
+    "kubernetesServiceType": "LoadBalancer",
+    "kubernetesUseDynamicStorage": false,
+    "ingressDomain": "",
+    "monitoring": "no",
+    "istio": false
   }
 }

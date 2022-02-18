@@ -1,0 +1,12 @@
+commonLabels:
+  app.kubernetes.io/genereted-by: JHipster
+
+resources:
+  # Individual apps
+  - aircev-k8s/aircev-deployment.yml
+  - aircev-k8s/aircev-service.yml
+  - aircev-k8s/aircev-mysql.yml
+  - aircev-k8s/jwt-secret.yml
+# service discovery eureka/consul
+
+patchesJson6902:

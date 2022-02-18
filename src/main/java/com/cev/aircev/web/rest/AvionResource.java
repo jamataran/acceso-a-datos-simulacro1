@@ -1,5 +1,6 @@
 package com.cev.aircev.web.rest;
 
+import com.cev.aircev.domain.Avion;
 import com.cev.aircev.repository.AvionRepository;
 import com.cev.aircev.service.AvionService;
 import com.cev.aircev.service.dto.AvionDTO;
@@ -164,6 +165,14 @@ public class AvionResource {
         Optional<AvionDTO> avionDTO = avionService.findOne(id);
         return ResponseUtil.wrapOrNotFound(avionDTO);
     }
+
+    @GetMapping("/avions/viejo")
+    public ResponseEntity<AvionDTO> elMasViejo() {
+        AvionDTO avionDTO = avionService.elMasViejo();
+        return ResponseEntity.ok(avionDTO);
+    }
+
+
 
     /**
      * {@code DELETE  /avions/:id} : delete the "id" avion.
